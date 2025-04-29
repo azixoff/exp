@@ -1,0 +1,16 @@
+const puppeteer = require('puppeteer');
+
+(async () => {
+  const iPhone13 = puppeteer.devices['iPhone 13'];
+
+  const browser = await puppeteer.launch({
+    headless: false,
+    defaultViewport: null,
+    args: ['--no-sandbox', '--disable-setuid-sandbox']
+  });
+
+  const page = await browser.newPage();
+  await page.emulate(iPhone13);
+
+  await page.goto('https://www.whatismybrowser.com/');
+})();
